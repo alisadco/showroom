@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function CarCard({ car }) {
     const { make, model, price, imageUrl } = car;
 
@@ -12,3 +13,4 @@ function CarCard({ car }) {
         </div>
     );
 }
+export default CarCard;
