@@ -1,39 +1,27 @@
 package com.showroom.showroom.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
-@RequestMapping("/cars")
+@RequestMapping("/api")
 public class CarController {
-    // Implement CRUD operations for Car entity
-}
 
-@RestController
-@RequestMapping("/dealerships")
-public class DealershipController {
-    // Implement CRUD operations for Dealership entity
+    @PostMapping("/search")
+    public CarSearchResponse searchCars(@RequestBody CarSearchSpecification searchSpecification) {
+        List<Car> matchingCars = performSearch(searchSpecification);
 
-    @GetMapping("/by-zipcode")
-    public List<Dealership> getDealershipsByZipCode(@RequestParam String zipCode) {
-        // Implement logic to get dealerships within a certain zip code and radius
+        return new CarSearchResponse(searchSpecification, matchingCars);
     }
 
-    @GetMapping("/by-cars")
-    public List<Dealership> getDealershipsByCarMake(@RequestParam String carMake) {
-        // Implement logic to get dealerships by the kinds of cars they sell
-    }
-
-    @GetMapping("/{dealershipId}/reviews")
-    public List<Review> getDealershipReviews(@PathVariable Long dealershipId) {
-        // Implement logic to get consumer ratings and reviews of a dealership by its ID
-    }
-}
-
-@RestController
-@RequestMapping("/reviews")
-public class ReviewController {
-    // Implement CRUD operations for Review entity
-
-    @GetMapping("/by-cars-and-zipcode")
-    public List<Review> getReviewsByCarMakeAndZipCode(@RequestParam String carMake, @RequestParam String zipCode) {
-        // Implement logic to get consumer ratings and reviews of dealerships by their car makes and the zip code they’re in
+    // This is a dummy method to simulate searching based on the specification
+    private List<Car> performSearch(CarSearchSpecification searchSpecification) {
+        // Perform your search logic here and return a list of matching cars
+        // In this example, let's return a dummy list of cars
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car("Toyota", "Camry", 2020, "Blue", 25000, "VIN123", null, null));
+        cars.add(new Car("Honda", "Accord", 2019, "Red", 30000, "VIN456", null, null));
+        // Add more cars...
+        return cars;
     }
 }
