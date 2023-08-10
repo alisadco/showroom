@@ -1,16 +1,14 @@
 import React from 'react';
 
-
-function CarCard({ car }) {
-    const { make, model, price, imageUrl } = car;
-
+const CarCard = ({ car }) => {
     return (
         <div className="car-card">
-            <img src={imageUrl} alt={make + ' ' + model} />
-            <h2>{make} {model}</h2>
-            <p>{price}</p>
-            {/* Add more car details here */}
+            <img src={car.image} alt={`${car.make} ${car.model}`} />
+            <h3>{car.make} {car.model}</h3>
+            <p>Price: ${car.price}</p>
+            <button>Add to Cart</button>
         </div>
     );
-}
+};
+
 export default CarCard;
